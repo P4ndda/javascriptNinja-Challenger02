@@ -42,6 +42,31 @@ Invoque a função criada acima passando como parâmetro 10 valores `truthy`.
 */
 ?
 
+1.isTruthy(10)
+true
+
+2.isTruthy('oi');
+true
+
+3.isTruthy(array = [10, 20, 30]);
+true
+
+4.isTruthy(objeto = {Nome: `objeto`});
+true
+
+5.isTruthy(function() {});
+true
+
+6.isTruthy(10 * 20);
+true
+
+7. isTruthy(10 + 20);
+true
+
+8.isTruthy(`pedro` + 'Augusto');
+true
+
+9...
 
 ///////////////////////////////////////////////////////////////////////////////
 /*
