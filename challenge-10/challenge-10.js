@@ -1,3 +1,5 @@
+
+(function(){
 /*
 Crie uma IIFE que envolva todo esse arquivo (inclusive esse comentário),
 e faça a indentação correta.
@@ -9,11 +11,24 @@ deles seja "true", usando os Wrapper Objects como "conversores" nos valores
 das variáveis. Analise o que está sendo impresso no console para saber como
 resolver o problema corretamente.
 */
+
 var five = '5';
 console.log( five + ' é número?', typeof five === 'number' );
 
+//VERSÃO CORRETA
+var five = Number ('5');
+console.log( five + ' é número?', typeof five === 'number' );
+
+
+
 var concat = 10 + 10;
 console.log( '"' + concat + '" é uma string? E é igual a "1010"?', typeof concat === 'string' );
+
+//VERSÃO CORRETA
+var concat = String(10 + 10);
+console.log( '"' + concat + '" é uma string? E é igual a "1010"?', typeof concat === 'string' );
+
+
 
 /*
 Voltando ao exemplo da calculadora, vamos utilizar mais uma abordagem
@@ -26,6 +41,26 @@ propriedade, usando os valores passados por parâmetro.
 */
 // ?
 
+var operation = {
+    '+': function(x, y){
+            return x + y;
+    },
+    '-': function(x, y){
+            return x - y;
+    },
+    '*': function(x, y){
+            return x * y;
+    },
+    '/': function(x, y){
+            return x / y;
+    },
+    '%': function(x, y){
+            return x % y;
+    }
+}
+
+
+
 /*
 Crie uma função chamada `isOperatorValid`, que receberá um operador por
 parâmetro.
@@ -37,6 +72,12 @@ Caso contrário, "false".
 - O desafio é fazer o retorno sem usar "if" ou "switch".
 */
 // ?
+
+function isOperatorValid( x ){
+    return operation[x] !== undefined;
+}
+
+
 
 /*
 Agora vamos criar a calculadora.
@@ -52,6 +93,20 @@ os dois parâmetros da função de retorno de "calculator".
 */
 // ?
 
+function calculator( operator ){
+    if( (operation[operator] !== undefined) === false){
+        return( false);
+    }
+        return function numbers(n1, n2){
+            if(typeof n1 === 'Number' || typeof n2 === 'Number'){
+                return false;
+            }
+                return operation[ operator ](n1, n2);
+        }
+};
+
+
+
 /*
 Crie uma função chamada "showOperationMessage" que recebe três parâmetros:
 - o operador, o primeiro número e o segundo número. O retorno da função
@@ -61,6 +116,12 @@ Essa função mostrará a mensagem da operação que criaremos mais abaixo.
 */
 // ?
 
+function showOperationMessage(operator, n1, n2){
+    return cosole.log(`A operação ${n1} ${operator} ${n2} = `);
+}
+
+
+
 /*
 Crie uma função chamada "showErrorMessage" que recebe um parâmetro: o
 operador da operação cálculo, quando a operação não for válida.
@@ -68,6 +129,12 @@ Essa função deverá retornar a frase:
 'Operação "[OPERATOR]" não permitida!'
 */
 // ?
+
+function showErrorMessage( operator ){
+    return console.log(`Operação ${operator} não permitida!`);
+}
+
+
 
 /*
 Nossa calculadora está pronta! Agora vamos testá-la:
@@ -77,6 +144,12 @@ PASSO 1:
 */
 // ?
 
+var n1 = 10;
+var n2 = 15;
+var operationSignal;
+
+
+
 /*
 PASSO 2:
 Atribua à variável operationSignal o operador de soma, e declare uma
@@ -84,6 +157,11 @@ variável chamada "sum", que receba a função "calculator", passando por
 parâmetro a variável que recebeu o sinal da operação.
 */
 // ?
+
+operationSignal = '+';
+var sum = calculator( operationSignal );
+
+
 
 /*
 PASSO 3:
@@ -111,3 +189,4 @@ Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
 a mensagem de erro será mostrada no console.
 */
 // ?
+})();
