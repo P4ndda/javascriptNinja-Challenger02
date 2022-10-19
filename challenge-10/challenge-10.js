@@ -117,7 +117,7 @@ Essa função mostrará a mensagem da operação que criaremos mais abaixo.
 // ?
 
 function showOperationMessage(operator, n1, n2){
-    return cosole.log(`A operação ${n1} ${operator} ${n2} = `);
+    return console.log(`A operação ${n1} ${operator} ${n2} = `);
 }
 
 
@@ -144,8 +144,8 @@ PASSO 1:
 */
 // ?
 
-var n1 = 10;
-var n2 = 15;
+var n1 = 0;
+var n2 = 0;
 var operationSignal;
 
 
@@ -177,6 +177,17 @@ parâmetros para o método "log" de "console":
 */
 // ?
 
+if(sum){
+    n1 = 12;
+    n2 = 20;
+    
+    console.log(showOperationMessage( operationSignal, n1, n2), sum(n1, n2));
+}else{
+    console.log(showErrorMessage( operationSignal  ));
+}
+
+
+
 /*
 Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
 divisão e resto. Crie variáveis com os nomes "subtraction",
@@ -184,9 +195,72 @@ divisão e resto. Crie variáveis com os nomes "subtraction",
 */
 // ?
 
+//subtração
+operationSignal;
+'-'
+var subtraction = calculator( operationSignal );
+if(subtraction){
+    n1 = 12;
+    n2 = 20;
+    
+    console.log(showOperationMessage( operationSignal, n1, n2), subtraction(n1, n2));
+}else{
+    console.log(showErrorMessage( operationSignal  ));
+};
+
+
+
+//multiplicação
+operationSignal = '*';
+
+var multiplication = calculator( operationSignal );
+
+if(multiplication){
+    n1 = 12;
+    n2 = 20;
+    
+    console.log(showOperationMessage( operationSignal, n1, n2), multiplication(n1, n2));
+}else{
+    console.log(showErrorMessage( operationSignal  ));
+};
+
+//divisão
+operationSignal = '/';
+
+var division = calculator( operationSignal );
+
+if(division ){
+    n1 = 12;
+    n2 = 20;
+    
+    console.log(showOperationMessage( operationSignal, n1, n2), division(n1, n2));
+}else{
+    console.log(showErrorMessage( operationSignal  ));
+};
+
+
+
+//resto
+operationSignal = '%';
+
+var mod = calculator( operationSignal );
+
+if(mod ){
+    n1 = 13;
+    n2 = 20;
+    
+    console.log(showOperationMessage( operationSignal, n1, n2), mod(n1, n2));
+}else{
+    console.log(showErrorMessage( operationSignal  ));
+};
+
+
+
 /*
 Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
 a mensagem de erro será mostrada no console.
 */
 // ?
+
+
 })();
