@@ -1,3 +1,4 @@
+(function(){
 // Envolva todo o código desse arquivo em uma IIFE (incluindo esse comentário).
 
 /*
@@ -9,6 +10,13 @@ Qual loop você deve usar para que essa mensagem seja mostrada no console?
 */
 // ?
 
+once = false
+do{
+    console.log(`Entrou pelo meno uma vez`)
+}while(once === true);
+
+
+
 /*
 Crie um objeto chamado `person`, que receba as seguintes propriedades:
 - 'name', 'age', 'weight' e 'birthday'. Preencha com os valores corretos
@@ -16,6 +24,14 @@ para o nome, idade, peso e data de nascimento dessa pessoa.
 */
 // ?
 
+person = {
+    name: `Pedro`,
+    age: 19,
+    weight: 70,
+    birthday: `27/06`}
+    
+    
+    
 /*
 Use um loop para percorrer o objeto criado acima, mostrando no console
 a frase:
@@ -27,6 +43,16 @@ Após o loop, mostre a frase:
 */
 // ?
 
+var counter = 0
+for(var index in person){
+    
+    console.log(`The ${index} of person is ${person[index]}`);
+    counter ++;
+    
+}console.log(`The person has ${counter} properties`);
+
+
+
 /*
 Crie uma função chamada `moreThan`, que vai verificar se a pessoa (objeto
 criado acima) é mais velha que a idade passada por parâmetro.
@@ -36,6 +62,12 @@ Após a função, mostrar a mensagem no console:
 */
 // ?
 
+function moreThan( probaAge ){
+    return console.log(`The person has more than 25 years old?`, person.age > probaAge);
+}
+
+
+
 /*
 Faça um loop de 0 a 20, que adicione cada número como um item de um
 array chamado `numbers`. Se o contador for maior que 10, saia do loop.
@@ -43,6 +75,15 @@ Mostre no console os números no array.
 */
 console.log( 'De 0 a 10:' );
 // ?
+
+for(var i = 0; i < 20; i++){
+    array.push(i);
+
+    if(i > 10)
+        break;
+}console.log(`De 0 a 10`, array);
+
+
 
 /*
 Faça outro loop de 0 a 20, que adicione a um array chamado `numbers` (já
@@ -52,3 +93,14 @@ Mostrar no console os números do array.
 */
 console.log( 'Pares de 0 a 20:' );
 // ?
+
+for(var i = 0; i < 20; i++){
+
+    if(i % 2 === 1)
+        continue;
+
+    array.push(i);
+}console.log(`De 0 a 20`, array);
+
+
+})();
