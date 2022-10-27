@@ -133,6 +133,14 @@ no formato abaixo:
 */
 // ?
 
+for( var i in books){
+    for( var prop in books[i]){
+        console.log(`${prop}: ${books[i][prop]}`);
+    }
+}
+
+
+
 /*
 Crie um array chamado `myName`. Cada item desse array deve ser uma letra do
 seu nome. Adicione seu nome completo no array.
