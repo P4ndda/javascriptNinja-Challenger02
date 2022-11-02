@@ -55,11 +55,19 @@ Remova o primeiro estado do array `brasil` e mostre-o no console.
 console.log( '\nEstado removido:' );
 // ?
 
+console.log(`Estado removido: ${brasil.shift()} `);
+
+
+
 /*
 Crie um novo array chamado `newSul`, que receba somente os estados do sul,
 pegando do array `brasil`. Não remova esses itens de `brasil`.
 */
 // ?
+
+var newSul = brasil.slice(2, 5);
+
+
 
 /*
 Mostre no console os estados que estão em `newSul`.
@@ -67,16 +75,28 @@ Mostre no console os estados que estão em `newSul`.
 console.log( '\nEstados do Sul do Brasil:' );
 // ?
 
+console.log(`Estados do Sul do Brasil ${newSul.toString()}`);
+
+
+
 /*
 Mostre no console todos os estados que estão em `brasil`.
 */
 console.log( '\nAlguns Estados do Brasil:' );
 // ?
 
+console.log(`Alguns Estados do Brasil: ${brasil.toString()}`);
+
+
+
 /*
 Crie um novo array chamado `nordeste`, que tenha os estados do nordeste.
 */
 // ?
+
+var nordeste = [`Maranhão`, `Piauí`, `Ceará`, `Rio Grande do Norte`, `Paraíba`, `Pernambuco`, `Alagoas`, `Sergipe`, `Bahia`];
+
+
 
 /*
 Mostre no console os estados do nordeste.
@@ -84,11 +104,19 @@ Mostre no console os estados do nordeste.
 console.log( '\nEstados do Nordeste:' );
 // ?
 
+console.log(`Estados do Nordeste: ${nordeste.toString()}`);
+
+
+
 /*
 Remova de `brasil` os estados do `sudeste`, colocando-os em uma variável
 chamada `newSudeste`.
 */
 // ?
+
+var newSudeste = brasil.splice(5);
+
+
 
 /*
 Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
@@ -96,17 +124,29 @@ ficar no mesmo nível que os estados já existentes, não em um array separado.
 */
 // ?
 
+brasil = brasil.concat( nordeste );
+
+
+
 /*
 Mostre no console os estados em `newSudeste`.
 */
 console.log( '\nEstados em newSudeste:' );
 // ?
 
+console.log(`Alguns dos estados do Brasil: ${newSudeste}`);
+
+
+
 /*
 Mostre no console os estados do `brasil`.
 */
 console.log( '\nAlguns estados do Brasil:' );
 // ?
+
+console.log(`Alguns Estados do Brasil: ${brasil.toString()}`);
+
+
 
 /*
 usando forEach, percorra o array `brasil` e gere um novo array chamado
@@ -117,12 +157,23 @@ propriedades:
 */
 // ?
 
+var newBrasil = [];
+
+brasil.forEach(function(item, index){
+... newBrasil.push( {id: index, estados: item});
+... });
+
 /*
 Mostre o array `newBrasil` no console
 */
 console.log( '\nnewBrasil:' );
 // ?
 
+ > console.log(`newBrasil`);
+ > newBrasil.forEach(function(item, index){
+... console.log(newBrasil[index]);
+... });
+  
 /*
 Percorra o array `brasil` e verifique se os estados tem mais de 7 letras cada,
 atribuindo o resultado à uma variável. Se tiver, mostre no console a frase:
