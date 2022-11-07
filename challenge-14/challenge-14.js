@@ -12,12 +12,29 @@ Mostre esse array no console.
 console.log( 'Number Objects Array:' );
 // ?
 
+> var numberObjects = [{number: 1},
+... {number: 2}, {number: 3}, {number: 4}, {number: 5}, {number: 6}, {number: 7}, {number: 8}, {number: 9}, {number: 10}];
+undefined
+> console.log('Number objects Array:', numberObjects);
+
+
+
 /*
 Crie um array chamado `justNumbers`, que terá como elementos somente os
 números do array criado acima. Mostre esse novo array no console.
 */
 console.log( '\nJust Numbers:' );
 // ?
+
+> var justNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+undefined
+> console.log('Just Numbers: ', justNumbers);
+Just Numbers:  [
+  1, 2, 3, 4,  5,
+  6, 7, 8, 9, 10
+]
+
+
 
 /*
 Crie um novo array chamado `justMod2Or3`, que receberá do array criado acima
@@ -27,6 +44,14 @@ no console.
 console.log( '\nJust module of division by 2 or 3:' );
 // ?
 
+> var justMod20r3 = justNumbers.filter(function(number){
+... return number % 2 === 0 || numberva % 3 === 0;
+... });
+undefined
+> console.log('Just module of division bt 2 or 3: ', justMod20r3);
+  
+  
+  
 /*
 Declare uma variável chamada operation que receba, do array criado acima,
 um valor reduzido pela seguinte operação:
@@ -38,6 +63,14 @@ Mostre o resultado no console.
 console.log( '\nOperation:' );
 // ?
 
+> var operation = justMod20r3.reduce(function (somador, item){
+... return somador + item;
+... }, 0);
+undefined
+> console.log('Operation: ', operation);
+    
+    
+    
 /*
 Faça o mesmo cálculo passado acima, mas começando do último item para o
 primeiro. O nome da variável deve ser operation2. Mostre o resultado no
@@ -46,6 +79,14 @@ console.
 console.log( '\nOperation 2:' );
 // ?
 
+  var ration = justMod20r3.reduceRight(function (somador, item){
+... return somador + item;
+... }, 0);
+undefined
+> console.log('Operation: ', operation);
+    
+    
+    
 /*
 Crie um array chamado `name`. Cada elemento desse array deve ser uma sílaba
 do seu nome. Vamos reduzir esse array, juntando todas as sílabas, mas usando
@@ -57,6 +98,19 @@ falada, como se você estivesse falando em código xD
 console.log( '\nSeu nome na língua do "P":' );
 // ?
 
+> var name = ['P','E','D','R','O'];    
+    
+> var nameReduc = name.reduce(function(somatorio, item, index){
+... if(index % 2 === 0){
+..... return somatorio + 'P' + item;
+..... }
+... return somatorio + item;
+... });
+
+> console.log('your name in language of "P": ', nameReduc);
+  
+  
+  
 /*
 Crie uma variável chamada `inversedName`, que reduzirá o array em uma string
 e atribuirá o seu nome invertido (usando o array criado acima).
