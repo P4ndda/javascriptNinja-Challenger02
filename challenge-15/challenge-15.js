@@ -103,3 +103,5 @@ geovanna.addAge(3);
 console.log(geovanna.name + ' ' + geovanna.lastName + " agora tem " + geovanna.age);
 harvey.addAge(5);
 console.log(harvey.name + ' ' + harvey.lastName + " agora tem " + harvey.age);
+
+})();
