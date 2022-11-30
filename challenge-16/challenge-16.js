@@ -16,6 +16,12 @@ E assim por diante, até a última.
 console.log( 'As letras do seu nome:' );
 // ?
 
+var name = 'Pedro';
+
+for(var i = 1; i < name.length + 1; i++){
+    console.log(`Letra: ${name[i-1]} Posição[${i}]`);
+}
+
 /*
 - Declare uma variável chamada `fullName`, que receba seu nome completo,
 escrito no formato de slug (caixa baixa e palavras separadas por um traço).
@@ -31,6 +37,16 @@ console.log para cada formato.
 console.log( '\nNome convertido à partir de um slug:' );
 // ?
 
+var oldName = 'pedro-augusto-adão-silva';
+var fullName = oldName;
+
+fullName = fullName.split('-');
+fullName = fullName.map(function(item){
+    return item[0].toUpperCase() + item.slice(1);
+});
+console.log(`Meu nome em SLUG: ${oldName}. Meu nome normal: ${fullName.join(' ')}`);
+
+
 /*
 - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
 cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
@@ -42,6 +58,11 @@ O resultado final deve ficar mais ou menos assim:
 */
 console.log( '\nMeus amigos:' );
 // ?
+
+var friends = ['Vinicius', 'Matheus', 'Dominique', 'Tonis', 'James'];
+
+console.log(friends = friends.slice(0, 4).join(', ') + ' e ' + friends[4]);
+
 
 /*
 Usando o replace(), faça a string "Roberto" virar "Roberta".
