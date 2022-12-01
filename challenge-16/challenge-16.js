@@ -1,3 +1,4 @@
+(function(){
 /*
 1. Envolva todo o conteúdo desse desafio em uma IIFE.
 2. Adicione a diretiva 'use strict';
@@ -19,7 +20,7 @@ console.log( 'As letras do seu nome:' );
 var name = 'Pedro';
 
 for(var i = 1; i < name.length + 1; i++){
-    console.log(`Letra: ${name[i-1]} Posição[${i}]`);
+  console.log(`Letra: ${name[i-1]} Posição[${i}]`);
 }
 
 /*
@@ -47,6 +48,7 @@ fullName = fullName.map(function(item){
 console.log(`Meu nome em SLUG: ${oldName}. Meu nome normal: ${fullName.join(' ')}`);
 
 
+
 /*
 - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
 cada nome por vírgula. Entre o penúltimo e o último nome, o separador deve
@@ -59,9 +61,13 @@ O resultado final deve ficar mais ou menos assim:
 console.log( '\nMeus amigos:' );
 // ?
 
+var separator
 var friends = ['Vinicius', 'Matheus', 'Dominique', 'Tonis', 'James'];
-
-console.log(friends = friends.slice(0, 4).join(', ') + ' e ' + friends[4]);
+var phrase = friends.reduce(function(somatorio,item, index){
+      separator = (index === friends.length - 1) ?  ' e ' : ', ';
+       return somatorio + separator + item;
+});
+console.log(phrase)
 
 
 /*
@@ -71,12 +77,17 @@ Mostre o resultado no console.
 console.log( '\nEra "Roberto", agora é:' );
 // ?
 
+console.log('Roberto'.replace('to', 'ta'));
+
 /*
 Mostre no console a parte "nando" da string "Fernando". Use o método que
 faz a busca do final para o início da string.
 */
 console.log( '\nParte de uma string:' );
 // ?
+
+var name = 'fernando';
+console.log(name.slice(name.lastIndexOf('nando')));
 
 /*
 Declare uma variável chamada `myName`, que receba o seu primeiro nome,
@@ -89,3 +100,11 @@ Ex.: Nomes que deveriam funcionar: "Fernando", "RoBertO", "gabriEla", etc.
 */
 console.log( '\nNome com letras intercaladas entre caixa alta e baixa:' );
 // ?
+
+var myName = `Jorge`;
+var newName = [];
+for(var leng = myName.length, cont = 0; 
+    cont < leng; cont++){
+     cont % 2 ? newName.push(myName[cont]) : newName.push(myName[cont].toUpperCase());
+}console.log(newName.join(''))
+})();
