@@ -1,3 +1,4 @@
+(function(){
 /*
 1. Envolva todo o conteúdo desse desafio em uma IIFE.
 2. Adicione a diretiva 'use strict';
@@ -17,6 +18,15 @@ eles! Use um console.log para cada CPF.
 console.log( 'Limpando CPFs:' );
 // ?
 
+var cpfs = ['049-214 3421-1','210.458.522-05','735 500 794 - 22', '101.123-131x32'];
+
+function cleanCPF(x){
+    return x.replace(/[\s-.x]+/g, '');
+}console.log('Limpando CPFs: ');
+cpfs.forEach(function(item){
+    return console.log(cleanCPF(item));
+})
+  
 /*
 Usando os CPFs limpos acima, deixe-os com a formatação correta de CPF.
 Ex.: "999.999.999-99"
@@ -24,7 +34,14 @@ Mostre o resultado no console.
 */
 console.log( '\nFormatando CPFs corretamente:' );
 // ?
-
+  
+cpfs.forEach(function(item){
+     return console.log(cleanCPF(item).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/
+    , function(regex, $1,$2,$3,$4){
+        return $1 + '.' + $2 + '.' + $3 + '.' + $4;
+    }));
+});
+  
 /*
 Crie uma expressão regular que faça match com as palavras "junho" ou "julho",
 usando o mínimo de caracteres possíveis na regex.
@@ -39,6 +56,10 @@ O resultado deve ser:
 console.log( '\nMatch com as palavras "junho" ou "julho" para a frase "Os meses de janeiro, junho e julho começam com a letra j.":' );
 // ?
 
+var frase = "Os meses de janeiro, junho e julho começam com a letra j.";
+console.log('\nMatch com as palavras "junho" ou "julho" para a frase"Os meses de janeiro, junho e julho começam com a letra j.'
+, frase.match(/ju(\w{3})/g));
+  
 /*
 Crie uma expressão regular que faça o match com a abertura de uma tag
 HTML qualquer.
@@ -51,6 +72,9 @@ O resultado deve ser:
 console.log( '\nMatch com a abertura de uma tag HTML:' );
 // ?
 
+var tags = "<div><section><blockquote>Texto <img /></blockquote></section></div>";
+console.log('\nMatch com a abertura de uma tag HTML:', tags.match(/<\w+>/g))
+  
 /*
 Crie uma expressão regular que faça o match com uma tag HTML vazia, casando
 com a abertura e fechamento da tag.
@@ -62,6 +86,9 @@ O resultado deve ser:
 */
 console.log( '\nMatch com tags HTML vazias (abertura e fechamento da tag):' );
 // ?
+
+var tags2 = "<div><ul><li></li><li></li><li><span></span></li></ul></div>";
+console.log('\nMatch com tags HTML vazias (abertura e fechamento da tag):', tags2.match(/<\w+><\/\w+>/g))
 
 /*
 Vamos complicar um pouco agora :D
