@@ -114,3 +114,9 @@ corretas, para depois aplicar no código ;)
 */
 console.log( '\nFazer replace dos textos das tags:' );
 // ?
+
+var texto = "<h1>Título da página</h1><p>Este é um parágrafo</p><footer>Rodapé</footer>"
+console.log(texto.replace(/(<\w+>)(.{4,19})<\/\w+>/g, function(regex, n1, n2){
+    return `\nO texto dentro da tag ${n1} é ${n2}`;
+}));
+  
