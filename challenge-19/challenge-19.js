@@ -88,6 +88,17 @@ abaixo;
 qualquer classe que for testada. Os dados passados no exercício são somente
 para exemplificar.
 */
-var markup = '<main>\n  <div class="container">\n    <span class="text date"></span>\n    <p class=\'excerpt\'></p>\n  </div>\n</main>';
-console.log( '\nQuais classes CSS existem na marcação abaixo?\n\n', markup, '\n' );
+            var markup = '<main>\n  <div class="container">\n    <span class="text date"></span>\n    <p class=\'excerpt\'></p>\n  </div>\n</main>';
+            console.log('\nQuais classes CSS existem na marcação abaixo?\n\n', markup);            
+            
+            var classes = ["container", "text date", "excerpt", "main"];
+            
+            function hasClass(markup, cssClass){
+                var regex = new RegExp(`class=["']` + cssClass + `["']`)
+                return regex.test( markup );
+            }
+            
+            classes.forEach(function(cssClass){
+                return console.log(`${hasClass(markup, cssClass)} para a classe ${cssClass}`);
+            })
 // ?
