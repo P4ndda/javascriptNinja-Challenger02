@@ -1,3 +1,5 @@
+(function(win, doc){
+    'use strict';
 /*
 1. Envolva todo o conteúdo desse desafio em uma IIFE.
 2. Adicione a diretiva 'use strict';
@@ -16,41 +18,59 @@ Com a resposta, mostre um alert com a mensagem "Bem vindo [USERNAME]!"
 */
 // ?
 
+var userName = prompt('Qual é seu nome?');
+if(userName == false)
+    userName = '"Desconhecido"';
+alert(`Bem vindo ${userName}`);
+  
 /*
 Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
 uma variável chamada `email`.
 */
 // ?
 
+var email = prompt('Qual o seu e-mail?');
+  
 /*
 - Selecione o input de "Nome", atribuindo-o à uma variável chamada
 `$inputUsername`.
 */
 // ?
 
+var $inputUsername = doc.querySelector('input[type="text"]');
+  
 /*
 - Selecione o input de "Email", atribuindo-o à uma variável chamada
 `$inputEmail`.
 */
 // ?
 
+ var $inputEmail = doc.querySelector('input[type="email"]');
+  
 /*
 - Selecione o campo de "Mensagem", atribuindo-o à uma variável chamada
 `$message`.
 */
 // ?
 
+var $message = doc.querySelector('textarea');
+  
 /*
 - Selecione o botão de envio do formulário, atribuindo-o à uma variável
 chamada `$button`.
 */
 // ?
+  
+var $button = doc.querySelector('button');
 
 /*
 Preencha os campos de "Nome" e "Email" que estão no documento com os valores
 entrados pelo usuário.
 */
 // ?
+  
+$inputUsername.value = userName;
+$inputEmail.value = email;
 
 /*
 Adicione um listener de evento de click ao botão que faça o seguinte:
@@ -78,6 +98,22 @@ Caso contrário, mostre um alerta com a mensagem:
 */
 // ?
 
+$button.addEventListener('click', function(event){
+    event.preventDefault();
+    var incomplet = 0;
+                
+    $inputUsername.value ? null :alert('Preencha o nome!', incomplet ++) ; 
+        $inputEmail.value ? (isValidEmail($inputEmail.value)? null : 
+    alert('preencha o email corretamente!')) 
+    : alert('Preencha o e-mail!', incomplet ++);
+    $message.value ?  null : alert('Preencha a mensagem!', incomplet ++);
+
+    if(incomplet == 0){
+        confirm(`Tem certeza que deseja enviar o formulario?`)? 
+        alert('Enviado com sucesso') : alert('Não enviado');
+    }                
+}, false);
+  
 /*
 Crie uma função chamada `isValidEmail`, que será usada na validação do
 envio do formulário.
@@ -105,3 +141,10 @@ Alguns e-mails inválidos:
     - "agua_@evida.br.com"
 */
 // ?
+  
+function isValidEmail(email){
+
+    return ((/^(\w|\.|_|\+)+@\w+.\w{2,}(\.\w{2})?$/gm).test(email));
+                 
+}
+})(window, document);
