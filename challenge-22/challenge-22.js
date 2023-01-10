@@ -4,6 +4,16 @@
   */
   // ?
 
+            personOne = {
+                name: 'Pedro',
+                lastName: 'Augusto' 
+            };
+
+            personTwo = {
+                name: 'Geovanna',
+                lastName: 'Oliveira' 
+            };
+
   /*
   Agora crie uma função chamada `getFullName` que retorne as propriedades
   `name` e `lastName` dos objetos acima, formando um nome completo.
@@ -18,6 +28,14 @@
   console.log( 'O nome das pessoas é:' );
   // ?
 
+            function getFullName(){
+                return console.log(this.name, this.lastName); 
+            }
+
+            console.log('O nome das pessoas é: ');
+            console.log(getFullName.call(personOne));
+            console.log(getFullName.call(personTwo));
+
   /*
   Crie uma função chamada `sum`. Essa função pode receber uma lista de
   parâmetros variável, e deverá retornar a soma de todos eles.
@@ -27,12 +45,25 @@
   */
   // ?
 
+            function sum(){
+                console.log(arguments);
+
+                console.log(Array.prototype.reduce.call(arguments, function(somatorio, item){
+                    return somatorio + item;
+                }));
+            }
+
   /*
   Mostre no console que a função acima funciona, invocando-a em 3 console.log
   diferentes, com quantidades variáveis de parâmetros passados.
   */
   console.log( '\nSomar alguns números:' );
   // ?
+
+            console.log('\nsomar alguns números: ');
+            `\n`, sum(20,30,40,50);
+            `\n`, sum(10,10);
+            `\n`, sum(1,2,3,4,5,6,7,8,9);
 
   /*
   Declare uma variável chamada `userEntry`, que irá receber alguns valores
@@ -41,11 +72,18 @@
   */
   // ?
 
+            var userEntry = wind.prompt('Entre com alguns numeros que serão somados: ');     
+
+
   /*
   Mostre no console o valor entrado pelo usuário:
   */
   console.log( '\nEntrada do usuário:' );
   // ?
+
+            var userEntry
+            console.log('\nEntrada do usuário: ',
+            userEntry = wind.prompt('Entre com alguns numeros que serão somados: '));   
 
   /*
   Crie uma função chamada `justNumbers`, que recebe por parâmetro uma string
@@ -55,6 +93,11 @@
   console.log( '\nFunção que limpa entrada do usuário (somente números):' );
   // ?
 
+            (function justNumbers(string){
+                var justNumbersReg = new RegExp('\\d\{1,\}', 'gm');
+                return string.match( justNumbersReg );
+            })(userEntry);
+
   /*
   Usando a função acima, faça a limpeza dos valores entrados pelo usuário,
   atribuindo o resultado à uma variável `numbers`.
@@ -62,9 +105,21 @@
   console.log( '\nEntrada do usuário limpa. Somente números:' );
   // ?
 
+            var numbers;
+            console.log('\nEntrada do usuário limpa. Somente números:'
+            ,numbers = (function justNumbers(string){
+                var justNumbersReg = new RegExp('\\d\{1,\}', 'gm');
+                return string.match( justNumbersReg );
+            })(userEntry));
+
   /*
   Agora com o array de números, utilize a função `sum` para somar todos os
   números desse array e mostre o resultado no console.
   */
   console.log( '\nSomar números entrados pelo usuário:' );
   // ?
+
+            console.log('\nSomar números entrados pelo usuário'
+            ,numbers.reduce(function(somatorio, item){
+                return (+item) + (+somatorio);
+            }))
