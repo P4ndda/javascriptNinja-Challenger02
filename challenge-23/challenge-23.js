@@ -28,43 +28,34 @@ input;
     <form action="get">
         <input data-js="visor" type="text" name="" id="0" value="0">
         <ul>
-            <input data-js="number_zero" type="button" value="0">
-            <input data-js="number_one" type="button" value="1">
-            <input data-js="number_two" type="button" value="2">
-            <input data-js="operator_div" type="button" value="/">
+            <input data-js="numbers" type="button" value="0">
+            <input data-js="numbers" type="button" value="1">
+            <input data-js="numbers" type="button" value="2">
+            <input data-js="operator" type="button" value=" / ">
         </ul>
         <ul>
-            <input data-js="number_three" type="button" value="3">
-            <input data-js="number_four" type="button" value="4">
-            <input data-js="number_five" type="button" value="5">
-            <input data-js="operator_vez" type="button" value="x">
+            <input data-js="numbers" type="button" value="3">
+            <input data-js="numbers" type="button" value="4">
+            <input data-js="numbers" type="button" value="5">
+            <input data-js="operator" type="button" value=" x ">
         </ul>
         <ul>
-            <input data-js="number_six" type="button" value="6">
-            <input data-js="number_seven" type="button" value="7">
-            <input data-js="number_eight" type="button" value="8">
-            <input data-js="operator_men" type="button" value="-">
+            <input data-js="numbers" type="button" value="6">
+            <input data-js="numbers" type="button" value="7">
+            <input data-js="numbers" type="button" value="8">
+            <input data-js="operator" type="button" value=" - ">
         </ul>
         <ul>
-            <input data-js="clear" type="button" value="C">
-            <input data-js="number_nine" type="button" value="9">
-            <input data-js="operator_mai" type="button" value="+">
+            <input data-js="operator_clear" type="button" value="C">
+            <input data-js="numbers" type="button" value="9">
+            <input data-js="operator" type="button" value=" + ">
             <input data-js="operator_equal" type="button" value="=">
         </ul>
     </form>
     <script>
         (function(doc, win){
             var visor = doc.querySelector('[data-js="visor"]');
-            var number0 = doc.querySelector('[data-js="number_zero"]');
-            var number1 = doc.querySelector('[data-js="number_one"]');
-            var number2 = doc.querySelector('[data-js="number_two"]');
-            var number3 = doc.querySelector('[data-js="number_three"]');
-            var number4 = doc.querySelector('[data-js="number_four"]');
-            var number5 = doc.querySelector('[data-js="number_five"]');
-            var number6 = doc.querySelector('[data-js="number_six"]');
-            var number7 = doc.querySelector('[data-js="number_seven"]');
-            var number8 = doc.querySelector('[data-js="number_eight"]');
-            var number9 = doc.querySelector('[data-js="number_nine"]');
+            var $buttoNumbers = doc.querySelectorAll('[data-js="numbers"]');
 
             //metodo que não deixa parra o valor para o formulario, além de não editar
             visor.disabled = true;
@@ -76,52 +67,34 @@ input;
                     visor.value += number;
             }
 
-            number0.addEventListener('click', function(){
-                itsZero(0);
-            }, false);
+            Array.prototype.forEach.call($buttoNumbers, function(button){
+                button.addEventListener('click', function(){
+                    itsZero(button.value);
+                }, false);
+            })
 
-            number1.addEventListener('click', function(){
-                itsZero(1);
-            }, false);
-
-            number2.addEventListener('click', function(){
-                itsZero(2);
-            }, false);
-
-            number3.addEventListener('click', function(){
-                itsZero(3);
-            }, false);
-
-            number4.addEventListener('click', function(){
-                itsZero(4);
-            }, false);
-
-            number5.addEventListener('click', function(){
-                itsZero(5);
-            }, false);
-
-            number6.addEventListener('click', function(){
-                itsZero(6);
-            }, false);
-
-            number7.addEventListener('click', function(){
-                itsZero(7);
-            }, false);
-
-            number8.addEventListener('click', function(){
-                itsZero(8);
-            }, false);
-
-            number9.addEventListener('click', function(){
-                itsZero(9);
-            }, false);
-
-            var divisionSing = doc.querySelector('[data-js="operator_div"]');
-            var timesSing = doc.querySelector('[data-js="operator_vez"]');
-            var lessSing = doc.querySelector('[data-js="operator_men"]');
-            var sumSing = doc.querySelector('[data-js="operator_mai"]');
-            var clear = doc.querySelector('[data-js="clear"]');
+            var $operators = doc.querySelectorAll('[data-js="operator"]');
             var equal = doc.querySelector('[data-js="operator_equal"]');
+            var clear = doc.querySelector('[data-js="operator_clear"]');
+
+            function calculator(operator, number1, number2){
+                switch(operator){
+                    case' / ':
+                        return number1 / number2;
+                        break;
+                    case' x ':
+                        return number1 * number2;
+                        break;
+                    case' - ':
+                        return number1 - number2;
+                        break;
+                    case' + ':
+                        return (+number1) + (+number2);
+                        break;
+                    default:
+                        win.alert('Digite um sinal');
+                }
+            }
 
             function itsSign(sign){
                 signReg = new RegExp('\\s\.\\s\$')
@@ -131,51 +104,33 @@ input;
                     visor.value += sign;
             }
 
-            divisionSing.addEventListener('click', function(){
-                itsSign(' / ');
-            }, false)
-
-            timesSing.addEventListener('click', function(){
-                itsSign(` x `);
-            }, false)
-
-            lessSing.addEventListener('click', function(){
-                itsSign(` - `);
-            }, false)
-
-            sumSing.addEventListener('click', function(){
-                itsSign(` + `);
-            }, false)
+            Array.prototype.forEach.call($operators, function(operator){
+                operator.addEventListener('click', function(){
+                    itsSign(operator.value);
+                },false);
+            });
 
             equal.addEventListener('click', function(){
                 var numbReg = new RegExp('\(\\d+\)', 'g');
-                var operator = visor.value.match(/\s(.)\s/)[1];
+                var operator = visor.value.match(/\s(.)\s/gi);
                 var arrayNum = visor.value.match(numbReg);
+                var acumulado = 0;
 
-                    switch(operator){
-                        case'/':
-                            visor.value =  arrayNum[0] / arrayNum[1];
-                            break;
-                        case'x':
-                            visor.value = arrayNum[0] * arrayNum[1];
-                            break;
-                        case'-':
-                            visor.value = arrayNum[0] - arrayNum[1];
-                            break;
-                        case'+':
-                            visor.value = (+arrayNum[0]) + (+arrayNum[1]);
-                            break;
-                        default:
-                            win.alert('Digite um sinal');
-                    }
+                console.log(operator)
+                console.log(operator.length);
+                for(var cont = 0; cont < operator.length; cont++){
 
+                    cont == 0 ? acumulado = calculator(operator[cont], arrayNum[cont], arrayNum[cont+1])
+                    :
+                    acumulado = calculator(operator[cont], acumulado, arrayNum[cont+1]);
+                }
+
+                visor.value = acumulado;
             }, false);
 
             clear.addEventListener('click', function(){
                 visor.value = 0;
             }, false);
-
-            
 
         })(document, window);
     </script>
