@@ -20,7 +20,7 @@ Dica: olhe os erros que acontecem no console, e vá resolvendo um a um.
 Só passe para o próximo problema quando tiver resolvido o anterior :)
 */
 // ?
-
+/*
 var $a = new DOM('[data-js="link"]');
 $a.on('click', function(e) {
   e.preventDefault();
@@ -29,3 +29,45 @@ $a.on('click', function(e) {
 
 console.log('Elementos selecionados:', $a.get());
 console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);
+*/
+
+    <script>
+        (function(doc){
+            
+            'use strict';
+            
+            function DOM(elements){ 
+                this.element = doc.querySelectorAll(elements);
+            };
+            
+            var methodOn = function on(e){
+                e.preventDefault();
+                console.log('Você clicou que eu vi');
+            };
+            
+            DOM.prototype.on = function on(){
+                Array.prototype.forEach.call( this.element, function(){
+                    addEventListener('click', methodOn);
+                })
+            };
+            
+            DOM.prototype.off = function off(){
+                Array.prototype.forEach.call( this.element, function(){
+                    removeEventListener('click', methodOn);
+                })
+            };
+
+            DOM.prototype.get = function get(){
+                return this.element;
+            };
+
+            var $a = new DOM('[data-js="link"]');
+
+            //console.log($a.off());
+
+            console.log('Elementos selecionados:', $a.get());
+            console.log('$a é filho de body?', $a.get()[0].parentNode === document.body);            
+                  
+
+        })(document);
+    </script>
