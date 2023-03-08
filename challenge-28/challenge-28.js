@@ -25,3 +25,50 @@
   - Utilize a lib DOM criada anteriormente para facilitar a manipulação e
   adicionar as informações em tela.
   */
+        (function(doc, win){            
+            var $cep = doc.querySelector('#iCep');
+            var $subm = doc.querySelector('#iSubm');
+            var answe = doc.querySelector('[data-js="answer"]');
+            
+            function getRegexCep(){
+                $cep = $cep.value.match(/\d/g).join('');
+                return $cep;
+            }
+
+            function completeAddr(request){
+                var $Log = doc.querySelector('#iLog'); $Log.value = JSON.parse(request.responseText).logradouro;
+                var $Bai = doc.querySelector('#iBai'); $Bai.value = JSON.parse(request.responseText).bairro;  
+                var $Est = doc.querySelector('#iEst'); $Est.value = JSON.parse(request.responseText).uf;
+                var $Cid = doc.querySelector('#iCid'); $Cid.value = JSON.parse(request.responseText).localidade;
+            }
+            
+            function getRequest(){
+                var viaCep = new XMLHttpRequest();
+                viaCep.open('GET', `https://viacep.com.br/ws/${getRegexCep()}/json/`);
+                viaCep.send('');
+                viaCep.addEventListener('readystatechange', function(){requestIsOk(viaCep);});
+            }
+
+            function answerStat(type){
+                return {
+                    ok:  `encontramos o endereço para o CEP: ${$cep}`,
+                    error: `Não encontramos o endereço para o CEP: ${$cep}`,
+                    searching: `Buscando informações para o CEP ${$cep}`
+                }[type];
+            }
+
+            $subm.addEventListener('click', function(e){
+                e.preventDefault();
+                getRequest()
+            });
+
+            function requestIsOk(request){
+                if((request.readyState == 4 && request.status == 200 == true)){
+                    completeAddr(request)
+                    answe.innerHTML = answerStat('ok');
+                }else{
+                    answe.innerHTML = answerStat('error');
+                }
+            }
+
+        })(document, window);
